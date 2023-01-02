@@ -73,4 +73,32 @@ in {
       emoji = [ cfg.emoji.name ];
     };
   };
+  config.home-manager.sharedModules = [({ lib, ... }: {
+    xdg.configFile."fontconfig/conf.d/20-generic-name-aliasing.conf".text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+      <fontconfig>
+      <!— Generic name aliasing —>
+      <alias>
+      <family>sans-serif</family>
+      <prefer>
+      <family>${cfg.sansSerif.name}</family>
+      </prefer>
+      </alias>
+      <alias>
+      <family>serif</family>
+      <prefer>
+      <family>${cfg.serif.name}</family>
+      </prefer>
+      </alias>
+      <alias>
+      <family>monospace</family>
+      <prefer>
+      <family>${cfg.monospace.name}</family>
+      </prefer>
+      </alias>
+      </fontconfig>
+    '';
+  })];
+  
 }
